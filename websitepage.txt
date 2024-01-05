@@ -1,0 +1,181 @@
+<?php
+include("../connection.php");
+?>
+<!doctype html>
+<html lang="en">
+  <head>
+  <title>Home</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/style.css">  
+</head>
+  <body>
+      
+  
+<header>
+
+<div class="container">
+        <nav class="nav">
+            <a href="home.php" class="nav-logo">E-commerce</a>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="home.php" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Shop</a>
+                </li>
+            </ul>
+            <div class="shopping-bag">
+                <i class="ion-bag"><span class="bag-item-count">0</span></i>
+            </div>
+        </nav>
+    </div>
+</header>
+<section class="hero">
+    <div class="circle circle-small">
+        <img src="images/circle-small.png" alt="">
+    </div>
+    <div class="circle circle-large">
+        <img src="images/circle-large.png" alt="">
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="text">
+                <h1>Lifestyle <br> Smart <span>Watch</span></h1>
+                <h5>Technology of the future</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi blanditiis cumque ea, error esse eveniet harum illo magnam minus natus neque optio placeat quibusdam ratione saepe sint tenetur voluptas!</p>
+                <a href="#" class="cta">Buy now</a>
+            </div>
+            <div class="watch-wrapper">
+                <img src="images/watch.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay">
+        <div class="layer layer-1"></div>
+        <div class="layer layer-2"></div>
+        <div class="layer layer-3"></div>
+    </div>
+</section>
+
+    <section class="feature">
+    <div class="container">
+        <div class="content">
+            <div class="paragraph">
+                <h1>New<span>Products</span></h1>
+                 
+            </div>
+         
+            </div>
+        </div>
+    </section>
+    <div class="container">
+  <div class="row">
+  <?php
+        $selectquery = "select * from product";
+        $selectqueryconnect = mysqli_query($conn, $selectquery);
+        while ($r = mysqli_fetch_array($selectqueryconnect)) {
+        ?>
+    <div class="col-md-4">
+      <div class="centered-content">
+        <div id="portfolio">
+          <h1 class="sub-title"></h1>
+          <div class="work-list">
+            <div class="work">
+              <img src="<?php echo '../'.$r["image"] ?>" width="100" alt="Product Image">
+              <div class="layer">
+                <h3><?php echo $r["name"]?></h3>
+                <p>Description:<?php echo $r["description"]?></p>
+                
+                <div class="buttons">
+                  <button class="add-to-cart">Add to Cart</button>
+                  <button class="buy-now">Buy Now</button>
+               
+                </div>
+                
+              </div>
+            
+            </div>
+
+           
+        
+        </div>
+      
+    </div>
+    <?php
+        }
+        ?>    
+</div>
+ 
+</div>
+
+
+
+
+<!--Gsap CDN    -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+    gsap.to('.layer-1', {y: '-100vh', delay: .5});
+    gsap.to('.layer-2', {y: '-100vh', delay: .7});
+    gsap.to('.layer-3', {y: '-100vh', delay: .9});
+    gsap.to('.overlay', {y: '-100vh', delay: 1.5});
+
+    gsap.fromTo('.text',
+        {x: '30rem', opacity: 0},
+        {x: 0, opacity: 1, ease: 'back.out(1.7)', delay:1.9});
+
+    gsap.fromTo('.watch-wrapper',
+        {x: '30rem', opacity: 0},
+        {x: 0, opacity: 1, ease: 'back.out(1.7)', delay:2.3});
+
+
+        gsap.fromTo('.card',
+        {x: '30rem', opacity: 0},
+        {x: 0, opacity: 1, ease: 'back.out(1.7)', delay:2.5});
+
+    gsap.fromTo('.circle-small',
+        {x: '-30rem', opacity: 0},
+        {x: 0, opacity: 1, ease: 'back.out(1.7)', delay:1});
+
+    gsap.fromTo('.circle-large',
+        {x: '30rem', opacity: 0},
+        {x: 0, opacity: 1, ease: 'back.out(1.7)', delay:1.5});
+
+        gsap.fromTo('.paragraph',
+        {x: '30rem', opacity: 0},
+        {x: 0, opacity: 1, ease: 'back.out(1.7)', delay:1.9});
+
+
+
+
+
+  
+
+
+    </script>
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
